@@ -1,50 +1,50 @@
 const quizData = [
   {
-    question: 'Which artist sang the hit song "Shape of You"',
-    options: ['Bruno Mars', 'Justin Bieber', 'Ed Sheeran', 'Shawn Mendes'],
-    answer: 'Ed Sheeran',
+    question: "What is 12 × 8?",
+    options: ["96", "84", "108", "92"],
+    answer: "96",
   },
   {
-    question: 'Which artist released the album "21" in 2011',
-    options: ['Taylor Swift', 'Adele', 'Lady Gaga', 'Rihanna'],
-    answer: 'Adele',
+    question: "What is the square root of 144?",
+    options: ["10", "11", "12", "13"],
+    answer: "12",
   },
   {
-    question: 'Which band or artist released the album "Thriller" in 1982',
-    options: ['Prince', 'U2', 'Michael Jackson', 'Madonna'],
-    answer: 'Michael Jackson',
+    question: "Solve: 15 - (3 + 2)",
+    options: ["10", "11", "12", "9"],
+    answer: "10",
   },
   {
-    question: 'Who is popularly called "Baddo"?',
-    options: ['Wizkid', 'Olamide', 'Davido', 'VDM'],
-    answer: 'Olamide',
+    question: "What is the value of π (pi) rounded to two decimal places?",
+    options: ["3.12", "3.14", "3.16", "3.18"],
+    answer: "3.14",
   },
   {
-    question: "Who sang the song 'Holla at your boy'?",
-    options: ['Burna Boy', 'Daddy Shokki', 'Westlife', 'Wizkid'],
-    answer: 'Wizkid',
+    question: "How many sides does a hexagon have?",
+    options: ["5", "6", "7", "8"],
+    answer: "6",
   },
 ];
 
 let currentQuestionIndex = 0;
 let score = 0;
 
-const questionElement = document.getElementById('question');
-const optionsElement = document.getElementById('options');
-const nextButton = document.getElementById('next-button');
-const resultElement = document.getElementById('result');
-const scoreElement = document.getElementById('score');
-const restartButton = document.getElementById('restart-button');
+const questionElement = document.getElementById("question");
+const optionsElement = document.getElementById("options");
+const nextButton = document.getElementById("next-button");
+const resultElement = document.getElementById("result");
+const scoreElement = document.getElementById("score");
+const restartButton = document.getElementById("restart-button");
 
 function loadQuestion() {
   const currentQuestion = quizData[currentQuestionIndex];
   questionElement.innerHTML = `<h2>${currentQuestion.question}</h2>`;
-  optionsElement.innerHTML = '';
+  optionsElement.innerHTML = "";
 
   currentQuestion.options.forEach((option) => {
-    const button = document.createElement('button');
+    const button = document.createElement("button");
     button.textContent = option;
-    button.addEventListener('click', selectOption);
+    button.addEventListener("click", selectOption);
     optionsElement.appendChild(button);
   });
 }
@@ -57,28 +57,28 @@ function selectOption(e) {
     score++;
   }
 
-  nextButton.classList.remove('hidden');
+  nextButton.classList.remove("hidden");
 }
 
-nextButton.addEventListener('click', () => {
+nextButton.addEventListener("click", () => {
   currentQuestionIndex++;
   if (currentQuestionIndex < quizData.length) {
     loadQuestion();
-    nextButton.classList.add('hidden');
+    nextButton.classList.add("hidden");
   } else {
     showResult();
   }
 });
 
-restartButton.addEventListener('click', () => {
+restartButton.addEventListener("click", () => {
   currentQuestionIndex = 0;
   score = 0;
   loadQuestion();
-  resultElement.classList.add('hidden');
+  resultElement.classList.add("hidden");
 });
 
 function showResult() {
-  resultElement.classList.remove('hidden');
+  resultElement.classList.remove("hidden");
   scoreElement.textContent = `You scored ${score} out of ${quizData.length}`;
 }
 
